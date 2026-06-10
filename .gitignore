@@ -1,4 +1,5 @@
 ## Build artifacts
+releases/
 bin/
 obj/
 [Dd]ebug/
@@ -24,6 +25,9 @@ bld/
 ## Rider / VS Code
 .idea/
 .vscode/
+
+## .gitignore
+.gitignore
 
 ## NuGet
 *.nupkg
