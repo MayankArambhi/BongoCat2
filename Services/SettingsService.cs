@@ -20,7 +20,7 @@ public sealed class SettingsService
     {
         var folder = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "BongoCat2");
+            "DesktopKitty");
 
         Directory.CreateDirectory(folder);
         _settingsPath = Path.Combine(folder, "settings.json");

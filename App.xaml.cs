@@ -36,7 +36,7 @@ public partial class App : System.Windows.Application
         {
             System.Windows.MessageBox.Show(
                 $"Failed to start global input hooks:\n{ex.Message}",
-                "BongoCat2",
+                "Desktop Kitty",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
             Shutdown();

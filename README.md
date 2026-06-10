@@ -1,6 +1,6 @@
-# BongoCat2
+# Desktop Kitty
 
-A lightweight Windows desktop mascot inspired by [Bongo Cat](https://bongo.cat/). BongoCat2 sits on your desktop as a transparent, always-on-top overlay and reacts to global keyboard and mouse input with minimal CPU and memory usage.
+A lightweight Windows desktop mascot inspired by [Bongo Cat](https://bongo.cat/). Desktop Kitty sits on your desktop as a transparent, always-on-top overlay and reacts to global keyboard and mouse input with minimal CPU and memory usage.
 
 ## Features
 
@@ -18,7 +18,7 @@ A lightweight Windows desktop mascot inspired by [Bongo Cat](https://bongo.cat/)
 ## Screenshots
 
 <!-- Add screenshots here -->
-<!-- Example: ![BongoCat2 idle pose](docs/screenshots/idle.png) -->
+<!-- Example: ![Desktop Kitty idle pose](docs/screenshots/idle.png) -->
 
 ## Requirements
 
@@ -50,7 +50,7 @@ A lightweight Windows desktop mascot inspired by [Bongo Cat](https://bongo.cat/)
 Settings are stored at:
 
 ```
-%AppData%\BongoCat2\settings.json
+%AppData%\DesktopKitty\settings.json
 ```
 
 ## Build

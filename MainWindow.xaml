@@ -1,7 +1,7 @@
 ﻿<Window x:Class="TinyBongo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="BongoCat2"
+        Title="Desktop Kitty"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"

@@ -25,7 +25,7 @@ public sealed class TrayService : IDisposable
 
         _notifyIcon = new NotifyIcon
         {
-            Text = "BongoCat2",
+            Text = "Desktop Kitty",
             Icon = LoadTrayIcon(),
             Visible = true
         };
