@@ -76,6 +76,19 @@ To create a self-contained build:
 dotnet publish -c Release -r win-x64 --self-contained false
 ```
 
+## Screenshots
+
+Example gallery:
+
+![Desktop Kitty](Screenshots/SS2.png)
+
+Tips:
+
+- Use the Windows Snipping Tool or Print Screen to capture the overlay.
+- Recommended screenshot size: 1280x720 or larger for clarity.
+- Place images in `docs/screenshots/` and commit alongside releases.
+
+
 ## Usage
 
 | Action | How |
