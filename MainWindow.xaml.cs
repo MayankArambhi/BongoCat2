@@ -156,15 +156,22 @@ public partial class MainWindow : Window
 
     private void LoadSprites()
     {
-        var assetsDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Cat");
+        try
+        {
+            var assetsDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Cat");
 
-        _sprites[CatState.Idle] = LoadSprite(Path.Combine(assetsDir, "idle.png"));
-        _sprites[CatState.LeftPaw] = LoadSprite(Path.Combine(assetsDir, "left_paw.png"));
-        _sprites[CatState.RightPaw] = LoadSprite(Path.Combine(assetsDir, "right_paw.png"));
-        _sprites[CatState.BothPaws] = LoadSprite(Path.Combine(assetsDir, "both_paws.png"));
-        _sprites[CatState.MouseClick] = LoadSprite(Path.Combine(assetsDir, "mouse_click.png"));
+            _sprites[CatState.Idle] = LoadSprite(Path.Combine(assetsDir, "idle.png"));
+            _sprites[CatState.LeftPaw] = LoadSprite(Path.Combine(assetsDir, "left_paw.png"));
+            _sprites[CatState.RightPaw] = LoadSprite(Path.Combine(assetsDir, "right_paw.png"));
+            _sprites[CatState.BothPaws] = LoadSprite(Path.Combine(assetsDir, "both_paws.png"));
+            _sprites[CatState.MouseClick] = LoadSprite(Path.Combine(assetsDir, "mouse_click.png"));
 
-        SetCatState(CatState.Idle);
+            SetCatState(CatState.Idle);
+        }
+        catch (Exception ex)
+        {
+            System.Windows.MessageBox.Show($"Failed to load cat sprites:\n{ex.Message}", "Desktop Kitty", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 
     private static BitmapImage LoadSprite(string path)
@@ -185,10 +192,35 @@ public partial class MainWindow : Window
 
     private void ApplySettings()
     {
-        Left = _settings.WindowX;
-        Top = _settings.WindowY;
-        Topmost = _settings.AlwaysOnTop;
         ApplyScale(_settings.Scale);
+
+        // Ensure the window is positioned on-screen. If stored coordinates are
+        // outside the current virtual screen (multiple monitors, resolution change),
+        // move the window to the primary screen center and persist the new values.
+        var screenWidth = SystemParameters.VirtualScreenWidth;
+        var screenHeight = SystemParameters.VirtualScreenHeight;
+
+        var desiredLeft = _settings.WindowX;
+        var desiredTop = _settings.WindowY;
+
+        // If stored values would place the window fully off-screen, center it.
+        if (double.IsNaN(desiredLeft) || double.IsNaN(desiredTop)
+            || desiredLeft < -Width || desiredTop < -Height
+            || desiredLeft > screenWidth || desiredTop > screenHeight)
+        {
+            Left = (screenWidth - Width) / 2.0;
+            Top = (screenHeight - Height) / 2.0;
+            _settings.WindowX = Left;
+            _settings.WindowY = Top;
+            _settingsService.Save(_settings);
+        }
+        else
+        {
+            Left = desiredLeft;
+            Top = desiredTop;
+        }
+
+        Topmost = _settings.AlwaysOnTop;
     }
 
     private const int CounterAreaHeight = 42;

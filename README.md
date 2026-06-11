@@ -15,11 +15,6 @@ A lightweight Windows desktop mascot inspired by [Bongo Cat](https://bongo.cat/)
 - **Persistent settings** — Remembers window position, scale, and toggles between sessions
 - **System tray** — Show/hide, resize, toggle options, and exit from the notification area
 
-## Screenshots
-
-<!-- Add screenshots here -->
-<!-- Example: ![Desktop Kitty idle pose](docs/screenshots/idle.png) -->
-
 ## Requirements
 
 - Windows 10 or later
@@ -123,9 +118,3 @@ TinyBongo/
 ├── App.xaml             # Application entry
 └── README.md
 ```
-
-## License
-
-MIT License — see [LICENSE](LICENSE) for details.
-
-If you redistribute this project, retain attribution and include the license text.

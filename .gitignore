@@ -26,9 +26,6 @@ bld/
 .idea/
 .vscode/
 
-## .gitignore
-.gitignore
-
 ## NuGet
 *.nupkg
 *.snupkg
