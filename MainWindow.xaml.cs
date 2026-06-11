@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using TinyBongo.Models;
 using TinyBongo.Services;
+using System.IO;
 
 namespace TinyBongo;
 
@@ -265,6 +266,7 @@ public partial class MainWindow : Window
     {
         Dispatcher.BeginInvoke(() =>
         {
+            LogEvent($"KeyDown {virtualKey}");
             _pressedKeys.Add(virtualKey);
             UpdateCatState();
         });
@@ -274,6 +276,7 @@ public partial class MainWindow : Window
     {
         Dispatcher.BeginInvoke(() =>
         {
+            LogEvent($"KeyUp {virtualKey}");
             _pressedKeys.Remove(virtualKey);
             UpdateCatState();
         });
@@ -283,6 +286,7 @@ public partial class MainWindow : Window
     {
         Dispatcher.BeginInvoke(() =>
         {
+            LogEvent("MouseDown");
             _mouseDown = true;
             UpdateCatState();
         });
@@ -292,6 +296,7 @@ public partial class MainWindow : Window
     {
         Dispatcher.BeginInvoke(() =>
         {
+            LogEvent("MouseUp");
             _mouseDown = false;
             UpdateCatState();
         });
@@ -413,8 +418,22 @@ public partial class MainWindow : Window
             return;
         }
 
+        LogEvent($"StateChange {_currentState} -> {state}");
         _currentState = state;
         CatImage.Source = _sprites[state];
+    }
+
+    private void LogEvent(string text)
+    {
+        try
+        {
+            var logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "debug_events.log");
+            File.AppendAllText(logPath, $"{DateTime.Now:O} \t {text}\r\n");
+        }
+        catch
+        {
+            // Ignore logging failures
+        }
     }
 
     // No idle timer restart — keyboard state is event-driven; mouse release returns
